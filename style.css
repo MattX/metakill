@@ -1,0 +1,28 @@
+body {
+	font-family: "Garamond", "Adobe Garamond", "Times New Roman", serif;
+}
+
+#container  {
+	width: 800px;
+	margin-left: auto; margin-right: auto;
+	/*background: #f9f9f9;*/
+	margin-top: -1cm; padding-top: 1cm; padding-bottom: 1cm;
+}
+
+h1 {
+	text-align: center;
+	font-variant: small-caps;
+}
+
+a :link{
+	text-decoration: none;
+}
+
+a:hover a:active {
+	text-decoration: underline;
+}
+
+td.sep {
+	text-align: center;
+	width: 395px;
+}
