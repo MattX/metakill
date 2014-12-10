@@ -3,7 +3,6 @@ function selectuser($checked) {
 	global $db;
 ?>
 
-<div class="selectuser">
 
 <?php
 
@@ -20,7 +19,6 @@ foreach($usrs as $u) {
 
 ?>
 
-</div>
 
 <?php
 }

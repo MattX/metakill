@@ -16,14 +16,16 @@ function set_admin_id(id, admin) {
 <input type="hidden" name="admin" id="adminField" value="1">
 </form>
 </div>
-<ul><?php
+<ul class="list-group"><?php
 $usrs = list_user_killer($db, $k);
 foreach($usrs as $u) {
 ?>
-<li><?php if($u['admin']) { echo("[admin] "); } echo($u['name']); ?> : <?php echo(count_usr_kills($db, $k, $u['id'])); ?>
+<li class="list-group-item"><?php if($u['admin']) { echo('<span class="label label-info">admin</span> '); } echo($u['name']); ?> : <?php echo(count_usr_kills($db, $k, $u['id'])); ?>
     <?php if($make_adm) { 
-		if($u['admin']) { ?><a href="#" class="adminlink" onClick="set_admin_id(<?php echo($u['id']) ?>, 0)">[retirer le statut d'administrateur]</a>
-    <?php       } else { ?><a href="#" class="adminlink" onClick="set_admin_id(<?php echo($u['id']) ?>, 1)">[rendre administrateur]</a>
+		if($u['admin']) { ?><a href="#" class="pull-right" onClick="set_admin_id(<?php echo($u['id']) ?>, 0)">
+					<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Retirer le statut d'administrateur</button></a>
+    <?php       } else { ?><a href="#" class="pull-right" onClick="set_admin_id(<?php echo($u['id']) ?>, 1)">
+					<button class="btn btn-success btn-xs"><span class="glyphicon glyphicon-star"></span> Rendre administrateur</button></a>
     <?php } } ?>
 </li>
 <?php

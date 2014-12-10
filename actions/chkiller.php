@@ -20,17 +20,22 @@ function del() {
 }
 </script>
 
-<form style="display:inline;" method="POST" action="index.php">
-<table><tr><td><label for="name">Nom</label></td><td><input type="text" name="name" id="name" value="<?php echo($k['name']); ?>"></td></tr>
-       <tr><td><label for="desc">Description</label></td><td><textarea name="desc" id="desc"><?php echo($k['desc']); ?></textarea></td></tr>
-       <tr><td>Phase</td><td><?php echo($phases_text[$k['phase']].' : '); if($k['phase'] != 3) { ?><button type="button" onClick="nextphase();">Phase suivante</button><?php } ?></td></tr>
-           </table>
+<form class="form-horizontal" method="POST" action="index.php">
+<div class="form-group"><label for="name" class="control-label col-xs-2">Nom</label>
+			<div class="col-xs-10"><input class="form-control" type="text" name="name" id="name" value="<?php echo($k['name']); ?>"></div></div>
+<div class="form-group"><label for="desc" class="control-label col-xs-2">Description</label>
+                        <div class="col-xs-10"><textarea class="form-control" name="desc" id="desc"><?php echo($k['desc']); ?></textarea></div></div>
+<div class="form-group"><label class="control-label col-xs-2">Phase</label>
+			<span class="col-xs-10"><?php echo($phases_text[$k['phase']].' '); if($k['phase'] != 3) { ?>
+			<button type="button" class="btn btn-default" onClick="nextphase();"><span class="glyphicon glyphicon-step-forward"></span> Phase suivante</button><?php } ?></span></div>
 
 <input type="hidden" name="id" value="<?php echo($k['id']); ?>">
 <input type="hidden" name="action" value="chkiller">
 
 
-<h4>Sélection des participants</h4>
+<div class="panel panel-default">
+  <div class="panel-heading">Sélection des participants</div>
+  <div class="panel-body">
 <?php if($k['phase'] == 0) {
 	include('boxes/selectuser.php');
 	$usrs = list_user_killer($db, $k['id']);
@@ -39,12 +44,20 @@ function del() {
 	echo('<br>');
 }
 ?>
+</div>
+</div>
 
 <input type="submit" value="Enregistrer les modifications">
 </form>
 
-<h4>Participants</h4>
-<?php include('boxes/listusers.php'); listusersbox($db, $k['id'], true); ?>
+<div class="panel panel-default">
+  <div class="panel-heading">Participants (nombre de kills remplis)</div>
+  <div class="panel-body">
+    <?php include('boxes/listusers.php');
+      listusersbox($db, $k['id'], true); ?>
+  </div>
+</div>
+
 
 
 <?php if($k['phase'] >= 2) { ?>
@@ -66,4 +79,4 @@ function del() {
 <input type="hidden" name="action" value="delete">
 </form></div>
 
-<a href="#" onClick="del();" style="dellink"><img src="data/rem.svg" class="txticon">Supprimer le killer</a>
+<a class="btn btn-danger btn-lg col-xs-12" href="#" onClick="del();" style="dellink"><span class="glyphicon glyphicon-remove"></span> Supprimer le killer</a>

@@ -30,11 +30,11 @@ function doKill(to, writer, killer) {
 	$note_id = 1;
 	$notes = array();
 
-	echo("<table width=\"100%\">\n");
+	echo("<table class=\"table\" width=\"100%\">\n");
 	$kills = all_kills($db, $killer_id);
 	$usrs = list_user_killer($db, $killer_id);
 
-	echo('<tr><td>v--- Tue &lt;---</td>');
+	echo('<tr><td><span class="glyphicon glyphicon-arrow-down"></span> Tue <span class="glyphicon glyphicon-arrow-left"></span></td>');
 	foreach($usrs as $u_head)
 		echo('<td>'.$u_head['name'].'</td>');
 	echo("</tr>\n");
@@ -46,11 +46,13 @@ function doKill(to, writer, killer) {
 			if($u_assign[0] == $u_for[0]) { echo("<td></td>"); continue; }
 				
 ?>
-			<td><?php $k = $kills[$u_for[0]][$u_assign[0]];
+			<?php $k = $kills[$u_for[0]][$u_assign[0]];
 			          if($k['done'] == 1) {
-						echo('<img src="data/check.svg" class="txticon">Fait');
+						echo('<td class="success"><span class="glyphicon glyphicon-ok"></span> Fait');
 					  } elseif($can_write) {
-						echo('<a href="#" style="font-size:8pt;" onClick="doKill('.$k['for'].','.$k['writer'].','.$k['killer'].')">Marquer comme fait</a>');
+						echo('<td><a href="#" style="font-size:8pt;" onClick="doKill('.$k['for'].','.$k['writer'].','.$k['killer'].')">Marquer comme fait</a>');
+					  } else {
+						echo('<td>');
 					  }
 					  if($k['done'] == 1 or $all) {
 					    $notes[$note_id] = $k['desc'].' (écrit par '.name($k['writer']).')';

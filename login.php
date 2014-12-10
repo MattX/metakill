@@ -18,11 +18,13 @@ if(!isset($_SESSION['id'])) {
 
 <?php if($pass_warn) { print('<div class="alert alert-danger">Login incorrect</div>'); } ?>
 
-<form style="display:inline;" method="POST" action="index.php">
-<table><tr><td class="sep">
-<label for="user">Adresse email : </label><input type="text" name="user" id="user" <?php if(isset($_POST['user'])) echo('value="'.$_POST['user'].'"'); ?> autofocus></td><td class="sep">
-<label for="passwd">Code ultra-secret : </label><input type="password" name="passwd" id="passwd"></td><td class="sep">
-                                  <input type="submit" value="Connexion"></td></tr></table></form>
+<form class="form-horizontal" method="POST" action="index.php">
+<div class="form-group">
+<div class="col-xs-5"><input name="user" id="user" type="email" class="form-control" placeholder="Adresse email"></div>
+<div class="col-xs-5"><input name="passwd" id="password" type="password" class="form-control" placeholder="Mot de passe"></div>
+<div class="col-xs-2"><button type="submit" class="btn btn-primary">Connexion</button></div>
+</div>
+</form>
 
 <?php
 	$skip = true;
