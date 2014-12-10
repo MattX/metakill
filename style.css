@@ -2,11 +2,31 @@ body {
 	font-family: "Garamond", "Adobe Garamond", "Times New Roman", serif;
 }
 
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 #container  {
 	width: 800px;
 	margin-left: auto; margin-right: auto;
 	/*background: #f9f9f9;*/
 	margin-top: -1cm; padding-top: 1cm; padding-bottom: 1cm;
+}
+
+p.warn {
+	background-color: #fcc;
+	border: 2px solid red;
+	text-align: center;
+}
+
+p.info {
+	background-color: #ccf;
+	border: 2px solid blue;
+	text-align: center;
 }
 
 h1 {
@@ -25,4 +45,26 @@ a:hover a:active {
 td.sep {
 	text-align: center;
 	width: 395px;
+}
+
+.txticon {
+	height: 12pt;
+}
+
+.noteref {
+	font-size: 8pt;
+	vertical-align: super;
+}
+
+.adminlink {
+	font-size: 8pt;
+	vertical-align: super;
+}
+
+tr.list td {
+	border-bottom: 1px solid gray;
+}
+
+tr.list:last-child td {
+	border-bottom: none;
 }

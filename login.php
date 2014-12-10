@@ -1,4 +1,6 @@
 <?php
+make_title("Killers du ski");
+
 $pass_warn = false;
 
 if(isset($_POST['user']) && isset($_POST['passwd'])) {
@@ -13,8 +15,6 @@ if(isset($_POST['user']) && isset($_POST['passwd'])) {
 if(!isset($_SESSION['id'])) {
 ?>
 
-<h1>Killers du ski</h1>
-<h2>&nbsp;</h2>
 
 <?php if($pass_warn) { print('<p class="warn">Login incorrect</p>'); } ?>
 
