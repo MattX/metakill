@@ -24,8 +24,42 @@ $skip = false;
 <script language="javascript" src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="container">
 
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Afficher la barre de navigation</span>
+      </button>
+      <a class="navbar-brand" href="#">Metakill</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Accueil</a></li>
+      </ul>
+<?php
+if(isset($_SESSION['id'])) {
+?>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span id="nav_user_name"></span> <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.php?page=change_user"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+            <li><a href="index.php?disconnect=1"><span class="glyphicon glyphicon-log-out"></span> Se déconnecter</a></li>
+            <li class="divider"></li>
+            <li><a href="index.php?page=add_user"><span class="glyphicon glyphicon-plus"></span> Ajouter un utilisateur</a></li>
+          </ul>
+        </li>
+      </ul>
+<?php
+}
+?>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
 <?php
 
 foreach($_POST as $key => $value) {
@@ -44,14 +78,15 @@ if(!$skip) {
 	act($db, $_GET, $_POST, $_SESSION['id'], $u);
 	if(isset($err)) {
 ?>
-<p class="warn"><?php echo($err); ?></p>
+<div class="alert alert-warning"><?php echo($err); ?></div>
 <?php
 	}
 ?>
-<table width="100%"><tr><td><a href="index.php"><img src="data/home.svg" class="txticon">ACCUEIL</a></td>
-<td style="text-align: right;"><a href="index.php?page=change_user"><img src="data/person.svg" class="txticon"><span class="uname"><?php echo($u['name']); ?></span></a>
-| <a href="index.php?disconnect=1"><img src="data/logout.svg" class="txticon">Se déconnecter</a>
-| <a href="index.php?page=add_user"><img src="data/add.svg" class="txticon">Ajouter un utilisateur</a></td></table>
+<script language="javascript">
+$(function() {
+	$('#nav_user_name').text('<?php echo($u['name']); ?>');
+});
+</script>
 <?php
 	if(!isset($_GET['page'])) {
 		include 'list.php';

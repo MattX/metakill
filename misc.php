@@ -405,7 +405,7 @@ function act($db, $get, $post, $uid, $u)
 }
 
 function make_title($str) {
-	echo("<h1>$str</h1><h2>&nbsp;</h2>\n");
+	echo("<div class=\"page_header\"><h1>$str</h1></div>\n");
 }
 
 function make_names($db, $kid) {
